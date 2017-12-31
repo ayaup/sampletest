@@ -1,6 +1,6 @@
 <?php
 // require dirname(dirname(FILE)).'/bootstrap/helpers.php';
-
+// require dirname(dirname(FILE)).'/bootstrap/helpers.php';
 $db_config = get_db_config();
 
 
@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'connection'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
