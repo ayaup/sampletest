@@ -1,30 +1,4 @@
 <?php
-// require dirname(dirname(FILE)).'/bootstrap/helpers.php';
-
-// $db_config = get_db_config();
-function get_db_config()
-
-{
-    if (getenv('IS_IN_HEROKU')) {
-        $url = parse_url(getenv("DATABASE_URL"));
-
-        return $db_config = [
-            'connection' => 'pgsql',
-            'host' => $url["host"],
-            'database'  => substr($url["path"], 1),
-            'username'  => $url["user"],
-            'password'  => $url["pass"],
-        ];
-    } else {
-        return $db_config = [
-            'connection' => env('DB_CONNECTION', 'mysql'),
-            'host' => env('DB_HOST', 'localhost'),
-            'database'  => env('DB_DATABASE', 'forge'),
-            'username'  => env('DB_USERNAME', 'forge'),
-            'password'  => env('DB_PASSWORD', ''),
-        ];
-    }
-}
 
 return [
 
@@ -39,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'connection'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -82,15 +56,15 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => $db_config['host'],
+            'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),
-            'database' => $db_config['database'],
-            'username' => $db_config['username'],
-            'password' => $db_config['password'],
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
-            'sslmode' => 'require',
+            'sslmode' => 'prefer',
         ],
 
         'sqlsrv' => [
